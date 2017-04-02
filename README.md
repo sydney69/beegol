@@ -14,6 +14,7 @@ Numeric variable declarations will be added to a variable table. String varaible
 Usage: beegol file
 
 Rules:
+	* the beegol source file must end in .bgl
 	* only 1 command per line
 	* all lines must end with a ;
 	* commands and arguments must be seperated by 1 space
