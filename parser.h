@@ -1,4 +1,5 @@
 #include <string.h>
+#include <stdio.h>
 
 struct numeric
 {
@@ -12,6 +13,9 @@ struct txt
 	char name[20];
 	char value[255];
 };
+
+extern FILE *outFile;			//the output file
+extern FILE *subFile;			//the subroutine file
 
 
 struct numeric byte(char argument[]);
