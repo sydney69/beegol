@@ -1,7 +1,7 @@
 #include "parser.h"
 
 
-void printliteral(int stringsIndex,struct txt strings[],char argument[255],char *subroutines[])
+void printliteral(int stringsIndex,struct txt strings[],char argument[255],struct subroutine subroutines[])
 {
 	
 	char buf[10];
@@ -11,10 +11,10 @@ void printliteral(int stringsIndex,struct txt strings[],char argument[255],char 
 	// look at ../code/6502/print/main.asm
 	//add string literal to strings table and name it string<stringsIndex>
 						
-	sprintf(buf,"string%d",stringsIndex);			
+	sprintf(buf,"string%d",stringsIndex);	
+	printf("print buffer = %s\n",buf);		
 	strcpy(strings[stringsIndex].name,buf);
 	strcpy(strings[stringsIndex].value,argument);
-	stringsIndex++;
 				
 	//set printvector to string<x> and call printstring subroutine
 	fprintf(outFile,"lda #LO(%s)\n",buf);
@@ -25,9 +25,9 @@ void printliteral(int stringsIndex,struct txt strings[],char argument[255],char 
 	fprintf(outFile,"jsr printstring\n");
 				
 	//add printstring subroutine if it has not been added to sub file	
-	while(!strcmp(subroutines[tempcounter],""))
+	while(!strcmp(subroutines[tempcounter].name,""))
 	{
-		if(strcmp(subroutines[tempcounter],"printstring")==0)
+		if(strcmp(subroutines[tempcounter].name,"printstring")==0)
 		{
 			subfound=1;
 		}

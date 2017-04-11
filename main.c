@@ -71,8 +71,8 @@ int main(int argc, char *argv[])
 
 	// array of strings to record which commands have been added to the 
 	// subroutine file. 255 entries - 20 chars long should be enough for now.
-	char subroutines[255][20];
-
+	
+	struct subroutine subroutines[255];
 	struct numeric numbers[255];
 	struct txt strings[255];
 	int numbersIndex;
@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
 		strcpy(strings[i].name,"");
 		strcpy(strings[i].value,"");
 	
-		strcpy(subroutines[i],"");
+		strcpy(subroutines[i].name,"");
 		
 	}
 
@@ -239,14 +239,15 @@ int main(int argc, char *argv[])
 			{
 				argument[i-6]=line[i];
 			}
-			argument[i-7] = '\0';
-			
+			argument[i-6] = '\0';
+			printf("\nnew argument = %s\n",argument);
 //there are 5 (maybe more?) possibilities here:	
 	// ( 1 ) string literal  : "blah blah blah";
 	
 			if(argument[0]=='"')
 			{
 				printliteral(stringsIndex,strings,argument,subroutines);
+				stringsIndex++;
 			}
 		
 	// ( 2 ) string variable :

@@ -1,6 +1,11 @@
 #include <string.h>
 #include <stdio.h>
 
+struct subroutine
+{
+	char name[20];
+};
+
 struct numeric
 {
 	char name[20];
@@ -27,4 +32,4 @@ void mode(char argument[255]);
 void label(char argument[255]);
 void gotolabel(char argument[255]);
 void end(int NumbersIndex,struct numeric numbers[],int StringsIndex,struct txt strings[]);
-void printliteral(int stringsIndex,struct txt strings[],char argument[255],char **subroutines);
+void printliteral(int stringsIndex,struct txt strings[],char argument[255],struct subroutine subroutines[]);
