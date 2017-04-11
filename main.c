@@ -98,10 +98,8 @@ int main(int argc, char *argv[])
 	strcpy(OUTFILENAME,changesuffix(INFILENAME,".asm"));	//name asm file
 	strcpy(SUBFILENAME,changesuffix(INFILENAME,".sub"));	//name subfile
 	outFile = fopen(OUTFILENAME,"w");			//open asm file
-	printf("\nasm filename=%s",OUTFILENAME);
 	subFile = fopen(SUBFILENAME,"w");			//open sub file
-	printf("\nsub filename=%s",SUBFILENAME);
-
+	
 	for(i=0;i<256;i++)
 	{	
 		strcpy(numbers[i].name,"");
@@ -138,6 +136,15 @@ int main(int argc, char *argv[])
 		strcpy(command,getTerm(line,i));
 		i = i+strlen(command)+1;
 		printf("\ncommand = %s",command);
+		
+		printf("command length %d\n",strlen(command));
+		printf("line length %d\n",strlen(line));
+		
+		
+		if ((strlen(command)+1) == strlen(line))
+		{
+			printf("command only");
+		}
 			
 		//get argument
 		strcpy(argument,getTerm(line,i));
@@ -271,8 +278,7 @@ char* changesuffix(char file[20], char suffix[5])
 
 //	strcat(returnstring,suffix);
 	returnstring[i+4] = '\0';
-	printf("retruenstring = %s",returnstring);
-
+	
 	return returnstring;
 }
 
