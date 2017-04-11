@@ -1,12 +1,12 @@
 # beegol
 
-##Program: BEEGOL - BEEb Game Oriented Language</p>
+## Program: BEEGOL - BEEb Game Oriented Language</p>
 
-###Purpose
+### Purpose
 
 Simple language compiler to produce beebasm compatible assembler source file for use in writing games for the BBC Micro 
 
-###How?
+### How?
 It will work by reading each line from the source file and translating it into 6502 assembler.
 
 Numeric variable declarations will be added to a variable table. String varaibles and constants will be added to a string table. When a command is read the corresponding code will be written to the output file. Any subroutines needed will be added to the subroutines file which will be included in the output file. The variable and string tables will then be written to the output file.
