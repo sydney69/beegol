@@ -135,21 +135,20 @@ int main(int argc, char *argv[])
 		//get command
 		strcpy(command,getTerm(line,i));
 		i = i+strlen(command)+1;
-		printf("\ncommand = %s",command);
+		printf("\ncommand = %s",command);	
 		
-		printf("command length %d\n",strlen(command));
-		printf("line length %d\n",strlen(line));
-		
-		
-		if ((strlen(command)+1) == strlen(line))
+		if (line[strlen(command)] != ';')
 		{
-			printf("command only");
+			//get argument
+			strcpy(argument,getTerm(line,i));
+			i = i+strlen(argument)+1;
+			printf("\nargument = %s",argument);
+		}
+		else
+		{
+			printf("\nNo argument");
 		}
 			
-		//get argument
-		strcpy(argument,getTerm(line,i));
-		i = i+strlen(argument)+1;
- 		printf("\nargument = %s",argument);
 	
 
 //byte command
@@ -189,7 +188,73 @@ int main(int argc, char *argv[])
 		}
 
 
+//rem command - remark - comments added to output file as comment
+		if(strcmp(command,"rem") == 0)
+		{
+			found = 1;
+			rem(line);
+		}
 
+//mode command - set screenmode
+
+		if(strcmp(command,"mode") == 0)
+		{
+			found = 1;
+			mode(argument);
+		}
+
+//label command - for use with goto
+
+		if(strcmp(command,"label") == 0)
+		{
+			found = 1;
+			label(argument);
+		}
+
+//goto command - jump to a label
+
+		if(strcmp(command,"goto") == 0)
+		{
+			found = 1;
+			gotolabel(argument);
+		}
+
+//end command - marks end of program
+
+		if(strcmp(command,"end") == 0)
+		{
+			found = 1;
+			end(numbersIndex,numbers,stringsIndex,strings);
+		}
+
+
+//print command - print string/variable to screen		
+
+		if(strcmp(command,"print") == 0)
+		{
+			found = 1;
+			
+			//get real argument as get term only returns chars upto 1st space
+			for(i=6;i<(strlen(line)-2);i++)
+			{
+				argument[i-6]=line[i];
+			}
+			argument[i-7] = '\0';
+			
+//there are 5 (maybe more?) possibilities here:	
+	// ( 1 ) string literal  : "blah blah blah";
+	
+			if(argument[0]=='"')
+			{
+				printliteral(stringsIndex,strings,argument,subroutines);
+			}
+		
+	// ( 2 ) string variable :
+	// ( 3 ) byte variable   : <byte> or <byte> <+-/*> <byte> etc
+	// ( 4 ) word variable   : <word> or <word> <+-/*> <word> etc
+	// ( 5 ) nothing         : ;
+
+		}
 
 
 		//command not recognised
