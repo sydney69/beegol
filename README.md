@@ -1,6 +1,4 @@
-# beegol
-
-## Program: BEEGOL - BEEb Game Oriented Language</p>
+# BEEGOL - BEEb Game Oriented Language</p>
 
 ### Purpose
 
