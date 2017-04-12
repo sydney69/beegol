@@ -224,7 +224,7 @@ int main(int argc, char *argv[])
 		if(strcmp(command,"end") == 0)
 		{
 			found = 1;
-			end(numbersIndex,numbers,stringsIndex,strings);
+			end(numbersIndex,numbers,stringsIndex,strings,SUBFILENAME);
 		}
 
 

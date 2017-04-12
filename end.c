@@ -2,9 +2,12 @@
 
 //end command - marks end of program
 	
-void end(int numbersIndex,struct numeric numbers[],int stringsIndex,struct txt strings[])	
+void end(int numbersIndex,struct numeric numbers[],int stringsIndex,struct txt strings[],char SUBFILENAME[])	
 {
 	int i;
+	
+	fprintf(outFile,"rts\n\n");
+	fprintf(outFile,"INCLUDE \"%s\"\n\n",SUBFILENAME);
 	//copy variables table to output file
 	for(i=0;i<numbersIndex;i++)
 	{
